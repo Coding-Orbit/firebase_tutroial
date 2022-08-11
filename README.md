@@ -1,16 +1,11 @@
 # firebase_tutroial
 
-A new Flutter project.
+A Flutter firabse tutorial (FLutterFire) project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+important - if you are cloning the repo to your desktop, you will need to perform a packages get / pub get to install any dependencies that the project may have.
 
-A few resources to get you started if this is your first Flutter project:
+Check out flutter how to playlist - All flutter how to in one playlist https://www.youtube.com/watch?v=4oLBxuBjGfI&list=PLj919aSiofd1-8DV9hP4-hOlQWE-yD53h
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+A full flutter tutorial to become a flutter hero: https://www.youtube.com/watch?v=A-macK7KAyM&list=PLj919aSiofd0lTnzXt8VKpZQnGi-SogUD&t=0s
