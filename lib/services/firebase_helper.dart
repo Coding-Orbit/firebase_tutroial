@@ -1,8 +1,12 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_tutroial/models/user.dart';
+import 'package:firebase_tutroial/screens/home.dart';
+import 'package:firebase_tutroial/screens/signup.dart';
+import 'package:flutter/material.dart';
 
 class FirebaseHelper {
   const FirebaseHelper._();
@@ -52,4 +56,23 @@ class FirebaseHelper {
 
   static Stream<QuerySnapshot<Map<String, dynamic>>> get buildViews =>
       _db.collection('users').snapshots();
+
+  static Widget get homeScreen {
+    if (_auth.currentUser != null) {
+      return const HomeScreen();
+    }
+
+    return const SignUpScreen();
+  }
+
+  static Future<void> testHealth() async {
+    HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('checkHealth');
+
+    final response = await callable.call();
+
+    if (response.data != null) {
+      print(response.data);
+    }
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_tutroial/models/user.dart';
 import 'package:firebase_tutroial/services/firebase_helper.dart';
+import 'package:firebase_tutroial/widgets/user_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,25 +19,38 @@ class HomeScreen extends StatelessWidget {
           stream: FirebaseHelper.buildViews,
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return const CircularProgressIndicator();
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             }
-
-            final List<UserModel> users = [];
+            final List<UserModel> models = [];
             final List<QueryDocumentSnapshot>? docs = snapshot.data?.docs;
             if (docs == null || docs.isEmpty) {
               return const Text('No data');
             }
 
+            List<Widget> widgets = [];
+
             for (var doc in docs) {
-              if (doc.data() != null) {
-                users.add(
-                  UserModel.fromJson(doc.data() as Map<String, dynamic>),
-                );
-              }
+              models
+                  .add(UserModel.fromJson(doc.data() as Map<String, dynamic>));
+
+              final model = UserModel.fromJson(
+                doc.data() as Map<String, dynamic>,
+              );
+
+              widgets.add(
+                UserWidget(
+                  onClick: () => FirebaseHelper.testHealth(),
+                  model: model,
+                ),
+              );
             }
 
-            return Column(
-              children: users.map((e) => Text('Name is ${e.name}')).toList(),
+            return SingleChildScrollView(
+              child: Column(
+                children: widgets,
+              ),
             );
           },
         ),
