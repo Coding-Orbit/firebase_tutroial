@@ -1,16 +1,13 @@
 import 'package:firebase_tutroial/services/firebase_helper.dart';
+import 'package:firebase_tutroial/services/notification_service.dart';
 import 'package:flutter/material.dart';
-
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 late final Widget screen;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await FirebaseHelper.setupFirebase();
+  await NotificationService.initializeNotification();
 
   screen = FirebaseHelper.homeScreen;
 

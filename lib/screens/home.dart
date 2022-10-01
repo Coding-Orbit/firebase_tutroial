@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_tutroial/models/user.dart';
+import 'package:firebase_tutroial/screens/send_notification_screen.dart';
 import 'package:firebase_tutroial/services/firebase_helper.dart';
 import 'package:firebase_tutroial/widgets/user_widget.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,12 @@ class HomeScreen extends StatelessWidget {
 
               widgets.add(
                 UserWidget(
-                  onClick: () => FirebaseHelper.testHealth(),
+                  onClick: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SendNotificationScreen(
+                                token: model.token,
+                              ))),
                   model: model,
                 ),
               );
